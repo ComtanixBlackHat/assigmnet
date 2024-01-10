@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const posts = require('./../controllers/post.server.controllers');
 
-// Define routes and link them to the controller functions
+
 router.post('/', posts.add_post);
 router.get('/', posts.get_all_post);
 router.get('/mypost/:user_id', posts.get_mypost);

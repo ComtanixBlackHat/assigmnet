@@ -13,12 +13,12 @@
 
 <script>
 export default {
-  // You can add any specific logic here if needed
+ 
 };
 </script>
 
 <style scoped>
-/* Add CSS styles for the Not Found page */
+
 .not-found {
   display: flex;
   justify-content: center;

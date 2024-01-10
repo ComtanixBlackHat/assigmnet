@@ -55,7 +55,7 @@ export default {
 </script>
   
   <style scoped>
-  /* Styles for the update post form */
+
   .update-post {
     max-width: 600px;
     margin: 0 auto;

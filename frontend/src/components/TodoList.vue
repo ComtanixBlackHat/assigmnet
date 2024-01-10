@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style scoped>
-/* Add CSS styles for the Todo app */
+
 .todo-app {
   max-width: 600px;
   margin: 0 auto;

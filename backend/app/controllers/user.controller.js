@@ -1,4 +1,4 @@
-// user.controller.js
+
 const userModel = require('../models/user.model');
 
 

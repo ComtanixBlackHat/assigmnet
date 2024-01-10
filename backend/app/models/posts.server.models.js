@@ -52,7 +52,7 @@ db.each(
     (err, row) => {
         if (err) {
             console.error(err);
-            // Log the error and continue with the next post
+            
             return;
         }
 
@@ -88,12 +88,12 @@ db.each(
                 c.post_id = ${row.post_id};
         `;
 
-        // Create a promise for each comment query
+    
         const commentPromise = new Promise((resolve, reject) => {
             db.all(commentSql, (commentErr, commentRows) => {
                 if (commentErr) {
                     console.error(commentErr);
-                    // Log the error and resolve with an empty comments array
+                   
                     resolve([]);
                 } else {
                     const comments = commentRows.map(comment => ({
@@ -111,27 +111,27 @@ db.each(
             });
         });
 
-        // Add the promise to the array
+  
         postPromises.push(commentPromise);
 
-        // When the comment promise is resolved, add comments to the post
+       
         commentPromise.then(comments => {
             post.comments = comments;
         });
 
-        // Push the post to the posts array
+     
         posts.push(post);
     },
     (err, num_rows) => {
         if (err) {
             console.error(err);
-            // Handle the overall error, maybe send an error response
+          
             return done(err);
         }
 
-        // Wait for all comment promises to resolve before calling done
+
         Promise.all(postPromises).then(() => {
-            // Call the callback function here, after all asynchronous operations are done
+           
             return done(null, posts);
         });
     }
@@ -180,7 +180,7 @@ db.each(
     (err, row) => {
         if (err) {
             console.error(err);
-            // Log the error and continue with the next post
+            
             return;
         }
 
@@ -216,12 +216,12 @@ db.each(
                 c.post_id = ${row.post_id};
         `;
 
-        // Create a promise for each comment query
+     
         const commentPromise = new Promise((resolve, reject) => {
             db.all(commentSql, (commentErr, commentRows) => {
                 if (commentErr) {
                     console.error(commentErr);
-                    // Log the error and resolve with an empty comments array
+                   
                     resolve([]);
                 } else {
                     const comments = commentRows.map(comment => ({
@@ -239,27 +239,27 @@ db.each(
             });
         });
 
-        // Add the promise to the array
+     
         postPromises.push(commentPromise);
 
-        // When the comment promise is resolved, add comments to the post
+       
         commentPromise.then(comments => {
             post.comments = comments;
         });
 
-        // Push the post to the posts array
+    
         posts.push(post);
     },
     (err, num_rows) => {
         if (err) {
             console.error(err);
-            // Handle the overall error, maybe send an error response
+          
             return done(err);
         }
 
-        // Wait for all comment promises to resolve before calling done
+        
         Promise.all(postPromises).then(() => {
-            // Call the callback function here, after all asynchronous operations are done
+           
             return done(null, posts);
         });
     }
@@ -308,7 +308,7 @@ db.each(
     (err, row) => {
         if (err) {
             console.error(err);
-            // Log the error and continue with the next post
+         
             return;
         }
 
@@ -344,12 +344,12 @@ db.each(
                 c.post_id = ${row.post_id};
         `;
 
-        // Create a promise for each comment query
+        
         const commentPromise = new Promise((resolve, reject) => {
             db.all(commentSql, (commentErr, commentRows) => {
                 if (commentErr) {
                     console.error(commentErr);
-                    // Log the error and resolve with an empty comments array
+                  
                     resolve([]);
                 } else {
                     const comments = commentRows.map(comment => ({
@@ -367,27 +367,27 @@ db.each(
             });
         });
 
-        // Add the promise to the array
+
         postPromises.push(commentPromise);
 
-        // When the comment promise is resolved, add comments to the post
+    
         commentPromise.then(comments => {
             post.comments = comments;
         });
 
-        // Push the post to the posts array
+       
         posts.push(post);
     },
     (err, num_rows) => {
         if (err) {
             console.error(err);
-            // Handle the overall error, maybe send an error response
+          
             return done(err);
         }
 
-        // Wait for all comment promises to resolve before calling done
+        
         Promise.all(postPromises).then(() => {
-            // Call the callback function here, after all asynchronous operations are done
+         
             return done(null, posts);
         });
     }
@@ -402,7 +402,7 @@ const updatePost = (postId, newText, done) => {
             return done(err);
         }
 
-        // Check if any rows were affected
+       
         if (this.changes === 0) {
             return done({ status: 404, message: "Post not found" });
         }
@@ -431,10 +431,10 @@ const checkLikePost = (postId, userId, done) =>
         }
 
         if (existingLike) {
-            // Like already exists, return true
+          
             return done(null, { like: true });
         } else {
-            // Like does not exist, return false
+           
             return done(null, { like: false });
         }
     });

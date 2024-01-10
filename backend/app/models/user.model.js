@@ -35,7 +35,7 @@ const addNewUser = (user, done) => {
                 return done(err, null);
             }
 
-            // The user is successfully added to the database, no need to manually add to the array
+         
             return done(null, { username: user.username });
         }
     );
@@ -52,18 +52,18 @@ const authenticateUser = (username, password, done) => {
             }
 
             if (!user) {
-                // User not found
+           
                 return done("Username not found", null);
             }
 
             const hashedPassword = getHash(password, user.salt);
 
             if (hashedPassword !== user.password) {
-                // Incorrect password
+          
                 return done("Incorrect password", null);
             }
             console.log(user)
-            // User authenticated successfully
+         
             done(null, user);
         }
     );
@@ -76,12 +76,11 @@ const getToken = (id, done) => {
             return done(err, null);
         }
 
-        // If a row is found, return the token
         if (row) {
             return done(null, row.token);
         }
 
-        // If no token is found, return null
+        
         return done(null, null);
     });
 };
@@ -93,19 +92,19 @@ const setToken = (id, done) => {
             return done(err, null);
         }
 
-        // If the update is successful, return the new token
+     
         return done(null, token);
     });
 };
 
-// Function to remove a token
+
 const removeToken = (token, done) => {
     db.run('DELETE FROM tokens WHERE token = ?', [token], (err) => {
         if (err) {
             return done(err);
         }
 
-        // If the deletion is successful, return null (no error)
+      
         return done(null);
     });
 };
@@ -118,11 +117,11 @@ const getIDFromToken = (token, done) => {
         }
 
         if (!row) {
-            // If no matching record is found, return an error
+           
             return done("Invalid token", null);
         }
 
-        // Return the userId from the retrieved row
+       
         done(null, row.userId);
     });
 };

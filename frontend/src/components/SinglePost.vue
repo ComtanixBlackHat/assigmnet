@@ -20,11 +20,11 @@
         <!-- Other actions like share, etc. -->
       </div>
       <div class="post-comments" v-if="post.showComments">
-        <!-- Display comments here -->
+       
         <div v-for="(comment, index) in post.comments" :key="index" class="comment">
           <p>{{ comment.text }}</p>
         </div>
-        <!-- Comment input for new comments -->
+       
         <input type="text" placeholder="Write a comment..." v-model="post.newComment" @keyup.enter="addComment(post)">
       </div>
     </div>
@@ -38,7 +38,7 @@ export default {
   setup() {
     const posts = ref([]);
 
-    // Fetch data when the component is mounted
+    
     onMounted(async () => {
       try {
         
@@ -48,7 +48,7 @@ export default {
 
         const response = await axios.get(`http://localhost:3333/posts/${postId}`);
         console.log(response)
-        // Update the posts ref with the fetched data
+        
         posts.value = response.data;
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -73,7 +73,7 @@ export default {
         user_id: userId,
       });
 
-      // If the request is successful, increment the likes count
+      
       if(res.status === 201)
         post.likes++;
       else 
@@ -89,7 +89,7 @@ export default {
       }
     } catch (error) {
       console.error('Error liking the post:', error);
-      // Revert the like state if the request fails
+     
       post.isLiked = !post.isLiked;
     }
   
@@ -101,10 +101,7 @@ export default {
     async addComment(post){
       const commentText = post.newComment;
       
-      // Your logic to add the comment using the commentText
-      // ...
 
-      // Send a POST request using Axios
       const userId = localStorage.getItem('user_id');
       const url = `http://localhost:3333/posts/${post.id}/comment`;
 
@@ -114,13 +111,13 @@ export default {
           text: commentText,
         });
 
-        // Log the response or handle it as needed
+       
         console.log(response.data);
 
-        // After processing, you might want to clear the input
+       
         post.newComment = '';
       } catch (error) {
-        // Handle errors
+      
         console.error('Error adding comment:', error);
       }
     }
@@ -129,7 +126,7 @@ export default {
 </script>
 
 <style scoped>
-/* Add CSS styles to mimic Facebook's layout */
+
 .newsfeed {
   display: flex;
   flex-direction: column;

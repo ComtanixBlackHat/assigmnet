@@ -43,17 +43,17 @@ export default {
         const response = await axios.post('http://127.0.0.1:3333/auth/login', user);
         console.log('Status Code:', response.status);
 
-        // Check if the login was successful (adjust the condition based on your server response)
+       
         if (response.status === 200) {
           console.log(response.data)
           localStorage.setItem('session_token', response.data.token);
           localStorage.setItem('user_id', response.data.user_id);
-          // Redirect to '/auth/login'
+         
           this.$router.push('/dashboard');
         }
       } catch (error) {
         console.error('Login error:', error.message);
-        // Handle login error
+       
         this.error = 'Invalid credentials';
       }
     },
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style>
-  /* Add your component styles here */
+ 
   input[type=email],input[type=password]{
     width: 100%;
     padding: 12px;

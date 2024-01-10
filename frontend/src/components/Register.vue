@@ -40,8 +40,7 @@
     methods: {
       async registerUser() {
         if (this.user.password !== this.user.confirmPassword) {
-          console.error('Password and Confirm Password do not match');
-          // You can show an error message to the user if needed
+          
           return;
         }
   
@@ -50,15 +49,15 @@
           // Make a POST request using Axios
           const response = await axios.post('http://127.0.0.1:3333/auth/register', this.user);
           console.log('Status Code:', response.status);
-                // Check if the registration was successful (adjust the condition based on your server response)
+              
           if (response.status >= 201 ) {
-            // Redirect to 'auth/login'
+           
             this.$router.push('/login');
         }
-          // Handle the response
+        
           console.log('Registration successful:', response.data);
         } catch (error) {
-          // Handle errors
+        
           console.error('Registration failed:', error.message);
         }
       },
@@ -67,7 +66,7 @@
   </script>
   
 <style>
-  /* Add your component styles here */
+
   input[type=text],input[type=email],input[type=password],textarea{
   width: 100%;
   padding: 12px;
@@ -117,10 +116,7 @@
     float: right;
   }
 
-  /* Style the container */
-  
 
-  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {
     input[type=submit] {
       width: 100%;

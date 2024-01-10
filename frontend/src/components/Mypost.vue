@@ -17,7 +17,7 @@
         <button @click="toggleComment(post)">
           Comment
         </button>
-        <!-- Other actions like share, etc. -->
+        
       </div>
       <div class="post-comments" v-if="post.showComments">
         <!-- Display comments here -->
@@ -42,14 +42,14 @@
     setup() {
       const posts = ref([]);
   
-      // Fetch data when the component is mounted
+      
       onMounted(async () => {
         try {
             const userId = localStorage.getItem('user_id');
-          // Make a GET request to your API endpoint
+         
           const response = await axios.get('http://localhost:3333/posts/mypost/'+userId);
           console.log(response)
-          // Update the posts ref with the fetched data
+        
           posts.value = response.data;
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -74,7 +74,7 @@
           user_id: userId,
         });
   
-        // If the request is successful, increment the likes count
+      
         if(res.status === 201)
           post.likes++;
         else 
@@ -90,7 +90,7 @@
         }
       } catch (error) {
         console.error('Error liking the post:', error);
-        // Revert the like state if the request fails
+    
         post.isLiked = !post.isLiked;
       }
     
@@ -109,7 +109,7 @@
       async delete_post(post)
       {
         try {
-        // Make a DELETE request to delete the post
+        
         console.log(post.id)
         const response = await axios.delete(`http://localhost:3333/posts/${post.id}`);
         if(response.status === 200)
@@ -118,11 +118,11 @@
             alert("Fail to delte post")
         console.log('Deleted Post:', response.data);
 
-        // Implement any additional logic here if needed
+     
 
       } catch (error) {
         console.error('Error deleting post:', error);
-        // Handle error as needed
+      
       }
       } ,
       async detail(post)
@@ -134,7 +134,7 @@
   </script>
 
 <style scoped>
-/* Add CSS styles to mimic Facebook's layout */
+
 .newsfeed {
   display: flex;
   flex-direction: column;

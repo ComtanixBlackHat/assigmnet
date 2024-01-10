@@ -1,21 +1,21 @@
-// controllers/post.server.controllers.js
+
 const postModel = require('../models/posts.server.models')
-// Sample data (you might replace this with a database connection or any other data source)
+
 let postsData = [];
 
-// Controller functions
+
 const add_post = (req, res) => {
-    // Get post data from the request body
+   
     const postData = req.body;
 
-    // Call the addNewPost function from the model
+   
     postModel.addNewPost(postData, (err, postId) => {
         if (err) {
-            // Handle the error (e.g., send an error response)
+          
             return res.status(500).json({ error: 'Internal Server Error' });
         }
 
-        // Post added successfully, respond with the new post's ID
+      
         return res.status(201).json({ postId });
     });
 };
@@ -43,7 +43,7 @@ function get_post(req, res) {
 }
 function get_mypost(req, res) {
     const userID = req.params.user_id;
-    // console.log(postId);
+   
     
     postModel.getMyPosts(userID, (err, post) => {
         if (err) {
@@ -92,17 +92,17 @@ function add_like(req, res) {
         }
 
         if (result.like) {
-            // If true (like exists), return status 203 with a specific message
+            
             return res.status(203).json({ error: 'Like already exists for this post and user' });
         }
 
-        // If the like doesn't exist, proceed to add the like
+        
         postModel.addLikeToPost(postId, userId, (addLikeErr, addLikeResult) => {
             if (addLikeErr) {
                 return res.status(500).json({ error: 'Internal Server Error' });
             }
 
-            // Return status 201 with the result of adding the like
+           
             return res.status(201).json(addLikeResult);
         });
     });

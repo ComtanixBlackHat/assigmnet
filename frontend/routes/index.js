@@ -7,7 +7,7 @@ import addpost from '../src/components/CreatePost.vue'
 import updatepost from '../src/components/UpdatePost.vue'
 import mypost from '../src/components/Mypost.vue'
 const routes = [
-  // ... your existing routes
+  
   { path: '/:catchAll(.*)', component: NotFound },
   {
     path: '/dashboard',
